@@ -62,7 +62,7 @@
             this.MaximizeBox = false;
             this.Name = "frmChooseTable";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmChooseTable";
+            this.Text = "Choose Table";
             this.Load += new System.EventHandler(this.frmChooseTable_Load);
             this.ResumeLayout(false);
 

@@ -35,12 +35,12 @@ namespace sqlite_gui
                 var ic = builder.GetInsertCommand().CommandText;
                 var dc = builder.GetDeleteCommand().CommandText;
 
-                MessageBox.Show("auto generated update command: " + uc);
-                MessageBox.Show("auto generated insert command: " + ic);
-                MessageBox.Show("auto generated delete command: " + dc);
+                //MessageBox.Show("auto generated update command: " + uc);
+                //MessageBox.Show("auto generated insert command: " + ic);
+                //MessageBox.Show("auto generated delete command: " + dc);
                 dgvMain.ReadOnly = false;
             }
-            catch (Exception ex) {
+            catch {
                 MessageBox.Show("Tables without primary key cannot be edited/deleted");
                 dgvMain.ReadOnly = true;
             }
