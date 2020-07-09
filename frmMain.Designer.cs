@@ -28,9 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.dgvMain = new System.Windows.Forms.DataGridView();
             this.btnBrowse = new System.Windows.Forms.Button();
             this.lblPath = new System.Windows.Forms.Label();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMain)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,11 +68,34 @@
             this.lblPath.TabIndex = 2;
             this.lblPath.Text = "Ready";
             // 
+            // btnSave
+            // 
+            this.btnSave.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSave.BackgroundImage")));
+            this.btnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnSave.Location = new System.Drawing.Point(497, 7);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(31, 27);
+            this.btnSave.TabIndex = 3;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnDelete.BackgroundImage")));
+            this.btnDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnDelete.Location = new System.Drawing.Point(534, 7);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(31, 27);
+            this.btnDelete.TabIndex = 4;
+            this.btnDelete.UseVisualStyleBackColor = true;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 314);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.lblPath);
             this.Controls.Add(this.btnBrowse);
             this.Controls.Add(this.dgvMain);
@@ -89,6 +115,8 @@
         private System.Windows.Forms.DataGridView dgvMain;
         private System.Windows.Forms.Button btnBrowse;
         private System.Windows.Forms.Label lblPath;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnDelete;
     }
 }
 

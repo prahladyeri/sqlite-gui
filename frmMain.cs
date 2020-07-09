@@ -14,10 +14,40 @@ namespace sqlite_gui
     public partial class frmMain : Form
     {
         private SQLiteConnection conn = null;
+        private SQLiteDataAdapter adapter = null;
+        private DataSet dataset = null;
 
         public frmMain()
         {
             InitializeComponent();
+        }
+
+        private void setGrid(string tableName) {
+            adapter = new SQLiteDataAdapter("select * from " + tableName + " where 1=1;", conn);
+            SQLiteCommandBuilder builder = new SQLiteCommandBuilder(adapter);
+            dataset = new DataSet();
+            adapter.Fill(dataset);
+
+            //generate commands using command builder
+            try
+            {
+                var uc = builder.GetUpdateCommand().CommandText;
+                var ic = builder.GetInsertCommand().CommandText;
+                var dc = builder.GetDeleteCommand().CommandText;
+
+                MessageBox.Show("auto generated update command: " + uc);
+                MessageBox.Show("auto generated insert command: " + ic);
+                MessageBox.Show("auto generated delete command: " + dc);
+                dgvMain.ReadOnly = false;
+            }
+            catch (Exception ex) {
+                MessageBox.Show("Tables without primary key cannot be edited/deleted");
+                dgvMain.ReadOnly = true;
+            }
+
+            this.dgvMain.AutoGenerateColumns = true;
+            this.dgvMain.DataSource = dataset;
+            this.dgvMain.DataMember = dataset.Tables[0].TableName; //tableName;
         }
 
         private void openConn(string filename) {
@@ -36,7 +66,8 @@ namespace sqlite_gui
             frmChooseTable chooseTable = new frmChooseTable(al);
             chooseTable.ShowDialog();
             if (chooseTable.tableName != "") {
-                MessageBox.Show(chooseTable.tableName + " chosen");
+                //MessageBox.Show(chooseTable.tableName + " chosen");
+                setGrid(chooseTable.tableName);
             }
         }
 
@@ -52,9 +83,15 @@ namespace sqlite_gui
             DialogResult dr = ofd.ShowDialog();
             if (dr == System.Windows.Forms.DialogResult.OK) {
                 var filename = ofd.FileName;
+                lblPath.Text = filename;
                 //MessageBox.Show(fn);
                 openConn(filename);
             }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            adapter.Update(dataset);
         }
     }
 }
