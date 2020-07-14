@@ -9,7 +9,7 @@ The only dependency is SQLITE .NET interop DLLs. You can install it from [https:
 
 ## Installation
 
-You can get the latest build from here.
+You can get the latest build from [here](https://github.com/prahladyeri/sqlite-gui/releases/latest).
 
 ## Notes
 
