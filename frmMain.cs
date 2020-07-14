@@ -30,6 +30,8 @@ namespace sqlite_gui
                 string tableName = row[0].ToString();
                 tabControl1.TabPages.Add(tableName, tableName);
                 DataGridView dgv = new DataGridView();
+                dgv.Name = "dgv";
+                dgv.ContextMenuStrip = this.contextMenuStrip1;
                 dgv.Dock = DockStyle.Fill;
                 
                 //dgv.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Bottom | AnchorStyles.Left;
@@ -101,6 +103,7 @@ namespace sqlite_gui
             System.Diagnostics.FileVersionInfo fvi = System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location);
             string version = fvi.ProductMajorPart + "." +  fvi.ProductMinorPart;
             this.Text += " " + version;
+            new ToolTip().SetToolTip(this.btnSave, "Commit Changes");
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
@@ -130,6 +133,29 @@ namespace sqlite_gui
         private void btnDelete_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Not implemented yet");
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataGridView dgv = (DataGridView)tabControl1.SelectedTab.Controls["dgv"];
+            if (dgv.SelectedRows.Count == 0) {
+                MessageBox.Show("No rows selected.");
+                return;
+            }
+            foreach (DataGridViewRow row in dgv.SelectedRows) {
+                dgv.Rows.RemoveAt(row.Index);
+            }
+        }
+
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (tabControl1.SelectedTab == null) return;
+            string currentTab = tabControl1.SelectedTab.Name;
+            DataTable changes = datasets[currentTab].Tables[0].GetChanges();
+            if (changes != null && changes.Rows.Count > 0) {
+                DialogResult result= MessageBox.Show("You have pending changes. Are you sure you want to exit sqlite-qui?", null, MessageBoxButtons.YesNo);
+                if (result == DialogResult.No) e.Cancel = true;
+            }
         }
     }
 }
