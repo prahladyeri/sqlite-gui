@@ -106,8 +106,25 @@ namespace sqlite_gui
             new ToolTip().SetToolTip(this.btnSave, "Commit Changes");
         }
 
+        private bool havePendingChanges() {
+            foreach (TabPage tab in tabControl1.TabPages)
+            {
+                DataTable changes = datasets[tab.Name].Tables[0].GetChanges();
+                if (changes != null && changes.Rows.Count > 0)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         private void btnBrowse_Click(object sender, EventArgs e)
         {
+            if (havePendingChanges())
+            {
+                MessageBox.Show("You have pending changes, commit them before opening a new database.");
+                return;
+            }
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "SQLITE Database Files|*.db;*.sqlite3;*.sqlite";
             DialogResult dr = ofd.ShowDialog();
@@ -149,11 +166,8 @@ namespace sqlite_gui
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (tabControl1.SelectedTab == null) return;
-            string currentTab = tabControl1.SelectedTab.Name;
-            DataTable changes = datasets[currentTab].Tables[0].GetChanges();
-            if (changes != null && changes.Rows.Count > 0) {
-                DialogResult result= MessageBox.Show("You have pending changes. Are you sure you want to exit sqlite-qui?", null, MessageBoxButtons.YesNo);
+            if (havePendingChanges()) {
+                DialogResult result = MessageBox.Show("You have pending changes. Are you sure you want to exit sqlite-qui?", null, MessageBoxButtons.YesNo);
                 if (result == DialogResult.No) e.Cancel = true;
             }
         }
