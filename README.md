@@ -5,4 +5,12 @@ The only dependency is SQLITE .NET interop DLLs. You can install it from [https:
 
 ![screenshot](/screenshot.png)
 
-**sqlite-gui in action**
+*sqlite-gui in action*
+
+## Installation
+
+You can get the latest build from here.
+
+## Notes
+
+- You can download the Northwind sqlite database for testing from [here](https://github.com/jpwhite3/northwind-SQLite3/blob/master/Northwind_small.sqlite).
