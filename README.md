@@ -11,7 +11,7 @@ You can get the latest build from [here](https://github.com/prahladyeri/sqlite-g
 
 ## Build and run yourself
 
-The only dependency is sqlite .NET interop DLLs. You can get them from [https://system.data.sqlite.org](https://system.data.sqlite.org) if you want to build and run yourself.
+The only dependency is sqlite .NET interop DLLs. You can get them from [https://system.data.sqlite.org](https://system.data.sqlite.org).
 
 ## Notes
 
