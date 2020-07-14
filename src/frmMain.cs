@@ -28,6 +28,7 @@ namespace sqlite_gui
             tabControl1.TabPages.Clear();
             foreach (DataRow row in dsAllTables.Tables[0].Rows) { 
                 string tableName = row[0].ToString();
+                if (tableName.StartsWith("sqlite_")) continue;
                 tabControl1.TabPages.Add(tableName, tableName);
                 DataGridView dgv = new DataGridView();
                 dgv.Name = "dgv";
