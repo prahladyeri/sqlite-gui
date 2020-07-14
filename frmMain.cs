@@ -97,6 +97,10 @@ namespace sqlite_gui
         private void frmMain_Load(object sender, EventArgs e)
         {
             //MessageBox.Show("Hello, World!");
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            System.Diagnostics.FileVersionInfo fvi = System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location);
+            string version = fvi.ProductMajorPart + "." +  fvi.ProductMinorPart;
+            this.Text += " " + version;
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
