@@ -180,5 +180,10 @@ namespace sqlite_gui
                 MessageBox.Show("Error occurred" + ex.Message,"", MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
+
+        private void txtSQL_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.A) txtSQL.SelectAll();
+        }
     }
 }

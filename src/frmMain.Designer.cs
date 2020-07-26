@@ -48,9 +48,9 @@
             // 
             // btnBrowse
             // 
-            this.btnBrowse.Location = new System.Drawing.Point(15, 13);
+            this.btnBrowse.Location = new System.Drawing.Point(13, 13);
             this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(87, 23);
+            this.btnBrowse.Size = new System.Drawing.Size(75, 23);
             this.btnBrowse.TabIndex = 1;
             this.btnBrowse.Text = "Browse";
             this.btnBrowse.UseVisualStyleBackColor = true;
@@ -59,9 +59,9 @@
             // lblPath
             // 
             this.lblPath.AutoSize = true;
-            this.lblPath.Location = new System.Drawing.Point(111, 19);
+            this.lblPath.Location = new System.Drawing.Point(95, 19);
             this.lblPath.Name = "lblPath";
-            this.lblPath.Size = new System.Drawing.Size(43, 13);
+            this.lblPath.Size = new System.Drawing.Size(38, 13);
             this.lblPath.TabIndex = 2;
             this.lblPath.Text = "Ready";
             // 
@@ -70,9 +70,9 @@
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSave.BackgroundImage")));
             this.btnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnSave.Location = new System.Drawing.Point(827, 9);
+            this.btnSave.Location = new System.Drawing.Point(709, 9);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(36, 27);
+            this.btnSave.Size = new System.Drawing.Size(31, 27);
             this.btnSave.TabIndex = 3;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -83,10 +83,10 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this._sql);
-            this.tabControl1.Location = new System.Drawing.Point(15, 42);
+            this.tabControl1.Location = new System.Drawing.Point(13, 42);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(848, 365);
+            this.tabControl1.Size = new System.Drawing.Size(727, 365);
             this.tabControl1.TabIndex = 5;
             // 
             // contextMenuStrip1
@@ -111,7 +111,7 @@
             this._sql.Location = new System.Drawing.Point(4, 22);
             this._sql.Name = "_sql";
             this._sql.Padding = new System.Windows.Forms.Padding(3);
-            this._sql.Size = new System.Drawing.Size(840, 339);
+            this._sql.Size = new System.Drawing.Size(719, 339);
             this._sql.TabIndex = 0;
             this._sql.Text = "SQL";
             this._sql.UseVisualStyleBackColor = true;
@@ -119,12 +119,14 @@
             // txtSQL
             // 
             this.txtSQL.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtSQL.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSQL.Location = new System.Drawing.Point(3, 3);
             this.txtSQL.Multiline = true;
             this.txtSQL.Name = "txtSQL";
             this.txtSQL.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtSQL.Size = new System.Drawing.Size(834, 160);
+            this.txtSQL.Size = new System.Drawing.Size(713, 160);
             this.txtSQL.TabIndex = 0;
+            this.txtSQL.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSQL_KeyDown);
             // 
             // dgvSQL
             // 
@@ -138,14 +140,14 @@
             this.dgvSQL.Location = new System.Drawing.Point(3, 192);
             this.dgvSQL.Name = "dgvSQL";
             this.dgvSQL.ReadOnly = true;
-            this.dgvSQL.Size = new System.Drawing.Size(832, 144);
+            this.dgvSQL.Size = new System.Drawing.Size(713, 144);
             this.dgvSQL.TabIndex = 1;
             // 
             // btnRunSQL
             // 
             this.btnRunSQL.Location = new System.Drawing.Point(3, 165);
             this.btnRunSQL.Name = "btnRunSQL";
-            this.btnRunSQL.Size = new System.Drawing.Size(60, 27);
+            this.btnRunSQL.Size = new System.Drawing.Size(51, 27);
             this.btnRunSQL.TabIndex = 2;
             this.btnRunSQL.Text = "Run";
             this.btnRunSQL.UseVisualStyleBackColor = true;
@@ -153,14 +155,14 @@
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(884, 422);
+            this.ClientSize = new System.Drawing.Size(758, 422);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.lblPath);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnBrowse);
-            this.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "frmMain";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
