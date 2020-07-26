@@ -24,8 +24,10 @@ namespace sqlite_gui
             InitializeComponent();
         }
 
+
         private void setGridAll() {
-            tabControl1.TabPages.Clear();
+            while (tabControl1.TabPages.Count > 1) tabControl1.TabPages.RemoveAt(1); //clear
+            //addSQLTab();
             foreach (DataRow row in dsAllTables.Tables[0].Rows) { 
                 string tableName = row[0].ToString();
                 if (tableName.StartsWith("sqlite_")) continue;
@@ -34,8 +36,6 @@ namespace sqlite_gui
                 dgv.Name = "dgv";
                 dgv.ContextMenuStrip = this.contextMenuStrip1;
                 dgv.Dock = DockStyle.Fill;
-                
-                //dgv.Anchor = AnchorStyles.Top | AnchorStyles.Right | AnchorStyles.Bottom | AnchorStyles.Left;
                 tabControl1.TabPages[tableName].Controls.Add(dgv);
                 //
                 SQLiteCommandBuilder builder;
@@ -71,6 +71,7 @@ namespace sqlite_gui
                 dgv.AutoGenerateColumns = true;
                 dgv.DataSource = datasets[tableName];
                 dgv.DataMember = datasets[tableName].Tables[0].TableName; //tableName;
+
             }
         }
 
@@ -82,18 +83,6 @@ namespace sqlite_gui
             dsAllTables = new DataSet();
             da.SelectCommand.CommandText = "SELECT name FROM sqlite_master WHERE type = 'table' ORDER BY 1;";
             da.Fill(dsAllTables);
-
-            //ArrayList al = new ArrayList();
-            //foreach (DataRow row in dsAllTables.Tables[0].Rows) {
-            //    //MessageBox.Show("TABLE: " + row[0]);
-            //    al.Add(row[0]);
-            //}
-            //frmChooseTable chooseTable = new frmChooseTable(al);
-            //chooseTable.ShowDialog();
-            //if (chooseTable.tableName != "") {
-                //MessageBox.Show(chooseTable.tableName + " chosen");
-                //setGrid(chooseTable.tableName);
-            //}
             setGridAll();
         }
 
@@ -110,6 +99,7 @@ namespace sqlite_gui
         private bool havePendingChanges() {
             foreach (TabPage tab in tabControl1.TabPages)
             {
+                if (tab.Name == "_sql") continue;
                 DataTable changes = datasets[tab.Name].Tables[0].GetChanges();
                 if (changes != null && changes.Rows.Count > 0)
                 {
@@ -134,11 +124,13 @@ namespace sqlite_gui
                 lblPath.Text = filename;
                 //MessageBox.Show(fn);
                 openConn(filename);
+                txtSQL.Focus();
             }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            //@todo: loop through all tabs and save all table data, not just the current one.
             if (tabControl1.SelectedTab == null) {
                 MessageBox.Show("No selected data tab.");
                 return;
@@ -170,6 +162,22 @@ namespace sqlite_gui
             if (havePendingChanges()) {
                 DialogResult result = MessageBox.Show("You have pending changes. Are you sure you want to exit sqlite-qui?", null, MessageBoxButtons.YesNo);
                 if (result == DialogResult.No) e.Cancel = true;
+            }
+        }
+
+        private void btnRunSQL_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SQLiteDataAdapter adapter = new SQLiteDataAdapter(txtSQL.Text, conn);
+                DataSet ds = new DataSet();
+                adapter.Fill(ds);
+                dgvSQL.AutoGenerateColumns = true;
+                dgvSQL.DataSource = ds;
+                dgvSQL.DataMember = ds.Tables[0].TableName; //tableName;
+            }
+            catch (Exception ex) {
+                MessageBox.Show("Error occurred" + ex.Message,"", MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
     }
