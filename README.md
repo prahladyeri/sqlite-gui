@@ -1,6 +1,3 @@
-![pypi](https://img.shields.io/pypi/v/sqlite-gui.svg)
-![python](https://img.shields.io/pypi/pyversions/sqlite-gui.svg)
-![docs](https://readthedocs.org/projects/sqlite-gui/badge/?version=latest)
 ![license](https://img.shields.io/github/license/prahladyeri/sqlite-gui.svg)
 ![last-commit](https://img.shields.io/github/last-commit/prahladyeri/sqlite-gui.svg)
 [![donate](https://img.shields.io/badge/-Donate-blue.svg?logo=paypal)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JM8FUXNFUK6EU)
