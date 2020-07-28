@@ -26,7 +26,15 @@ namespace sqlite_gui
 
 
         private void setGridAll() {
-            while (tabControl1.TabPages.Count > 1) tabControl1.TabPages.RemoveAt(1); //clear
+            //clear sql tab
+            //dgvSQL.Rows.Clear();
+            //dgvSQL.Refresh();
+            txtSQL.Text = "";
+            dgvSQL.DataSource = null;
+            dgvSQL.DataMember = null;
+            dgvSQL.Refresh();
+            //clear tabs
+            while (tabControl1.TabPages.Count > 1) tabControl1.TabPages.RemoveAt(1); 
             //addSQLTab();
             foreach (DataRow row in dsAllTables.Tables[0].Rows) { 
                 string tableName = row[0].ToString();
@@ -66,6 +74,8 @@ namespace sqlite_gui
                 {
                     MessageBox.Show(tableName + ": tables without primary key cannot be edited/deleted");
                     dgv.ReadOnly = true;
+                    dgv.AllowUserToAddRows = false;
+                    dgv.AllowUserToDeleteRows = false;
                 }
 
                 dgv.AutoGenerateColumns = true;
@@ -130,14 +140,20 @@ namespace sqlite_gui
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //@todo: loop through all tabs and save all table data, not just the current one.
-            if (tabControl1.SelectedTab == null) {
-                MessageBox.Show("No selected data tab.");
+            if (!havePendingChanges()) {
+                MessageBox.Show("No changes to save.");
                 return;
             }
-            string currentTab = tabControl1.SelectedTab.Name;
-            //MessageBox.Show("current tab: " + currentTab);
-            adapters[currentTab].Update(datasets[currentTab]);
+            foreach (TabPage tab in tabControl1.TabPages)
+            {
+                if (tab.Name == "_sql") continue;
+                DataTable changes = datasets[tab.Name].Tables[0].GetChanges();
+                if (changes != null && changes.Rows.Count > 0)
+                {
+                    adapters[tab.Name].Update(datasets[tab.Name]);
+                }
+            }
+            MessageBox.Show("Data Saved");
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -145,7 +161,7 @@ namespace sqlite_gui
             MessageBox.Show("Not implemented yet");
         }
 
-        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        private void mnuDelete_Click(object sender, EventArgs e)
         {
             DataGridView dgv = (DataGridView)tabControl1.SelectedTab.Controls["dgv"];
             if (dgv.SelectedRows.Count == 0) {

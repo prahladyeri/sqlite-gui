@@ -34,16 +34,17 @@
             this.lblPath = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._sql = new System.Windows.Forms.TabPage();
-            this.txtSQL = new System.Windows.Forms.TextBox();
-            this.dgvSQL = new System.Windows.Forms.DataGridView();
             this.btnRunSQL = new System.Windows.Forms.Button();
+            this.dgvSQL = new System.Windows.Forms.DataGridView();
+            this.txtSQL = new System.Windows.Forms.TextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuView = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
             this._sql.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSQL)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnBrowse
@@ -87,21 +88,7 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(727, 365);
-            this.tabControl1.TabIndex = 5;
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deleteToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(108, 26);
-            // 
-            // deleteToolStripMenuItem
-            // 
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.deleteToolStripMenuItem.Text = "Delete";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            this.tabControl1.TabIndex = 0;
             // 
             // _sql
             // 
@@ -116,17 +103,15 @@
             this._sql.Text = "SQL";
             this._sql.UseVisualStyleBackColor = true;
             // 
-            // txtSQL
+            // btnRunSQL
             // 
-            this.txtSQL.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtSQL.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSQL.Location = new System.Drawing.Point(3, 3);
-            this.txtSQL.Multiline = true;
-            this.txtSQL.Name = "txtSQL";
-            this.txtSQL.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtSQL.Size = new System.Drawing.Size(713, 160);
-            this.txtSQL.TabIndex = 0;
-            this.txtSQL.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSQL_KeyDown);
+            this.btnRunSQL.Location = new System.Drawing.Point(3, 165);
+            this.btnRunSQL.Name = "btnRunSQL";
+            this.btnRunSQL.Size = new System.Drawing.Size(51, 26);
+            this.btnRunSQL.TabIndex = 2;
+            this.btnRunSQL.Text = "Run";
+            this.btnRunSQL.UseVisualStyleBackColor = true;
+            this.btnRunSQL.Click += new System.EventHandler(this.btnRunSQL_Click);
             // 
             // dgvSQL
             // 
@@ -143,15 +128,39 @@
             this.dgvSQL.Size = new System.Drawing.Size(713, 144);
             this.dgvSQL.TabIndex = 1;
             // 
-            // btnRunSQL
+            // txtSQL
             // 
-            this.btnRunSQL.Location = new System.Drawing.Point(3, 165);
-            this.btnRunSQL.Name = "btnRunSQL";
-            this.btnRunSQL.Size = new System.Drawing.Size(51, 27);
-            this.btnRunSQL.TabIndex = 2;
-            this.btnRunSQL.Text = "Run";
-            this.btnRunSQL.UseVisualStyleBackColor = true;
-            this.btnRunSQL.Click += new System.EventHandler(this.btnRunSQL_Click);
+            this.txtSQL.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtSQL.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSQL.Location = new System.Drawing.Point(3, 3);
+            this.txtSQL.Multiline = true;
+            this.txtSQL.Name = "txtSQL";
+            this.txtSQL.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtSQL.Size = new System.Drawing.Size(713, 160);
+            this.txtSQL.TabIndex = 0;
+            this.txtSQL.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSQL_KeyDown);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuDelete,
+            this.mnuView});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 70);
+            // 
+            // mnuDelete
+            // 
+            this.mnuDelete.Name = "mnuDelete";
+            this.mnuDelete.Size = new System.Drawing.Size(152, 22);
+            this.mnuDelete.Text = "Delete";
+            this.mnuDelete.Visible = false;
+            this.mnuDelete.Click += new System.EventHandler(this.mnuDelete_Click);
+            // 
+            // mnuView
+            // 
+            this.mnuView.Name = "mnuView";
+            this.mnuView.Size = new System.Drawing.Size(152, 22);
+            this.mnuView.Text = "View Details";
             // 
             // frmMain
             // 
@@ -162,7 +171,7 @@
             this.Controls.Add(this.lblPath);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnBrowse);
-            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "frmMain";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -170,10 +179,10 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.tabControl1.ResumeLayout(false);
-            this.contextMenuStrip1.ResumeLayout(false);
             this._sql.ResumeLayout(false);
             this._sql.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSQL)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -186,11 +195,12 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuDelete;
         private System.Windows.Forms.TabPage _sql;
         private System.Windows.Forms.TextBox txtSQL;
         private System.Windows.Forms.DataGridView dgvSQL;
         private System.Windows.Forms.Button btnRunSQL;
+        private System.Windows.Forms.ToolStripMenuItem mnuView;
     }
 }
 
