@@ -43,6 +43,7 @@ namespace sqlite_gui
                 DataGridView dgv = new DataGridView();
                 dgv.Name = "dgv";
                 dgv.ContextMenuStrip = this.contextMenuStrip1;
+                dgv.CellMouseDoubleClick += new DataGridViewCellMouseEventHandler(dgvSQL_CellMouseDoubleClick);
                 dgv.Dock = DockStyle.Fill;
                 tabControl1.TabPages[tableName].Controls.Add(dgv);
                 //
@@ -127,7 +128,7 @@ namespace sqlite_gui
                 return;
             }
             OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "SQLITE Database Files|*.db;*.sqlite3;*.sqlite";
+            ofd.Filter = "(*.db,*.sqlite,*.sqlite3)|*.db;*.sqlite3;*.sqlite";
             DialogResult dr = ofd.ShowDialog();
             if (dr == System.Windows.Forms.DialogResult.OK) {
                 var filename = ofd.FileName;
@@ -200,6 +201,33 @@ namespace sqlite_gui
         private void txtSQL_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Control && e.KeyCode == Keys.A) txtSQL.SelectAll();
+        }
+
+        private void mnuView_Click(object sender, EventArgs e)
+        {
+            DataGridView dgv;
+            if (tabControl1.SelectedTab.Name == "_sql")
+            {
+                dgv = dgvSQL;
+            }
+            else
+            {
+                dgv = (DataGridView)tabControl1.SelectedTab.Controls["dgv"];
+            }
+            if (dgv.CurrentRow == null)
+            {
+                MessageBox.Show("No rows selected.");
+                return;
+            }
+            DataGridViewRow row = dgv.CurrentRow; //#dgv.SelectedRows[0];
+            //
+            frmViewDetails view = new frmViewDetails(row);
+            view.ShowDialog();
+        }
+
+        private void dgvSQL_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            mnuView_Click(null, null);
         }
     }
 }

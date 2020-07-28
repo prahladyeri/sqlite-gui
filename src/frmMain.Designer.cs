@@ -127,6 +127,7 @@
             this.dgvSQL.ReadOnly = true;
             this.dgvSQL.Size = new System.Drawing.Size(713, 144);
             this.dgvSQL.TabIndex = 1;
+            this.dgvSQL.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvSQL_CellMouseDoubleClick);
             // 
             // txtSQL
             // 
@@ -146,7 +147,7 @@
             this.mnuDelete,
             this.mnuView});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(132, 48);
             // 
             // mnuDelete
             // 
@@ -161,6 +162,7 @@
             this.mnuView.Name = "mnuView";
             this.mnuView.Size = new System.Drawing.Size(152, 22);
             this.mnuView.Text = "View Details";
+            this.mnuView.Click += new System.EventHandler(this.mnuView_Click);
             // 
             // frmMain
             // 
