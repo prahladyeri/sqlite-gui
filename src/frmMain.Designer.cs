@@ -128,6 +128,7 @@
             this.dgvSQL.Size = new System.Drawing.Size(713, 144);
             this.dgvSQL.TabIndex = 1;
             this.dgvSQL.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvSQL_CellMouseDoubleClick);
+            this.dgvSQL.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvSQL_RowsAdded);
             // 
             // txtSQL
             // 

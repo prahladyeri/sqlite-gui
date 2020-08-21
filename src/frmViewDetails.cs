@@ -22,8 +22,8 @@ namespace sqlite_gui
 
         private void frmViewDetails_Load(object sender, EventArgs e)
         {
-            dataGridView1.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            //dataGridView1.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            //dataGridView1.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView1.Columns[1].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             
             for (int i = 0; i < theRow.DataGridView.Columns.Count; i++)

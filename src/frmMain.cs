@@ -227,7 +227,19 @@ namespace sqlite_gui
 
         private void dgvSQL_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            mnuView_Click(null, null);
+            if (e.RowIndex == -1) return;
+            if (e.ColumnIndex == -1)
+            {
+                mnuView_Click(null, null);
+            }
+        }
+
+        private void dgvSQL_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            //Button btn = new Button();
+            //btn attributes
+            //dgvSQL.Rows[e.RowIndex].Cells[0].Value = new Button();
+            //System.Diagnostics.Debug.Print("row_added::" + e.RowIndex.ToString() + "::" + e.RowCount.ToString());
         }
     }
 }
