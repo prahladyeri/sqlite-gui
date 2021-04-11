@@ -151,7 +151,16 @@ namespace sqlite_gui
                 DataTable changes = datasets[tab.Name].Tables[0].GetChanges();
                 if (changes != null && changes.Rows.Count > 0)
                 {
-                    adapters[tab.Name].Update(datasets[tab.Name]);
+                    try
+                    {
+                        adapters[tab.Name].Update(datasets[tab.Name]);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Exception occurred: " + ex.ToString());
+                    }
+
+                    
                 }
             }
             MessageBox.Show("Data Saved");
