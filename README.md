@@ -7,7 +7,7 @@
 # sqlite-gui
 Simple app to browse and edit tables in an sqlite database file
 
-![screenshot](/screenshots/screenshot.png)
+![screenshot](./screenshots/screenshot.png)
 
 *sqlite-gui in action*
 
